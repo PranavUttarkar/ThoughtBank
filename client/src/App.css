@@ -55,6 +55,97 @@ button:hover {
   margin: 20px;
 }
 
+.navbar {
+  background: rgba(0, 123, 255, 0.8); /* Semi-transparent background */
+  color: var(--button-text-color);
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  backdrop-filter: blur(10px); /* Blurred background */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff; /* White color for logo */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 2px; /* Spacing between letters */
+}
+
+.navbar .menu a {
+  color: #fff; /* White color for menu items */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 1px; /* Spacing between letters */
+  font-weight: 500; /* Medium font weight */
+}
+
+.navbar .menu a:hover {
+  color: #ffeb3b; /* Yellow color on hover */
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar .menu {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .menu a {
+  color: var(--button-text-color);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.navbar .menu a:hover {
+  color: var(--button-hover-bg);
+}
+
+@media (max-width: 768px) {
+  .navbar .menu {
+    flex-direction: column;
+    background: var(--primary-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+  }
+
+  .navbar .menu.active {
+    display: flex;
+  }
+
+  .navbar .menu a {
+    padding: 10px;
+    border-top: 1px solid var(--button-hover-bg);
+  }
+
+  .navbar .menu a:first-child {
+    border-top: none;
+  }
+
+  .navbar .toggle {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+.navbar .toggle {
+  display: none;
+}
+
 input, textarea {
   width: 100%;
   padding: 10px;
@@ -64,8 +155,9 @@ input, textarea {
   font-size: 16px;
 }
 
+
 /* Responsive Design */
-@media (max-width: 600px) {
+@media (max-width: 1600px) {
   body {
       padding: 20px;
   }

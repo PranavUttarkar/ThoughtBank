@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       {/* FIRE BASE TUTORIAL */}
-      <div className="App">
+      <div className="navbar">
         <Auth />
       </div>
 
