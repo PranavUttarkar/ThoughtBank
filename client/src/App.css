@@ -1,42 +1,72 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Light Theme CSS Template */
+
+:root {
+  --background-color: #f9f9f9;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --text-color: #333;
+  --button-bg: #007bff;
+  --button-hover-bg: #0056b3;
+  --button-text-color: #fff;
+  --border-radius: 8px;
+  --shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+}
+
+button {
+  background: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+button:hover {
+  background: var(--button-hover-bg);
 }
 
 .card {
-  padding: 2em;
+  background: #fff;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  max-width: 400px;
+  text-align: center;
+  margin: 20px;
 }
 
-.read-the-docs {
-  color: #888;
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  body {
+      padding: 20px;
+  }
 }
