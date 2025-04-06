@@ -31,7 +31,7 @@ export const Auth = () => {
     }
   }, [message]);
 
-  console.log(auth?.currentUser?.photoURL);
+  console.log(auth?.currentUser?.displayName);
 
   // const signIn = async () => {
   //   try {
@@ -45,7 +45,6 @@ export const Auth = () => {
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      setMessage("✅ Successfully signed in with Google!");
     } catch (err) {
       setMessage("❌ " + err);
     }
@@ -54,7 +53,7 @@ export const Auth = () => {
   const logout = async () => {
     try {
       await signOut(auth);
-      setMessage("✅ Successfully logged out!");
+      window.location.reload();
     } catch (err) {
       setMessage("❌ " + err);
     }
@@ -68,12 +67,11 @@ export const Auth = () => {
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
             alignItems: "right",
             padding: "10px",
           }}
         >
-          <div>
+          <div style={{ justifyContent: "left" }}>
             {auth?.currentUser ? (
               <>
                 {auth.currentUser.photoURL && (
@@ -94,35 +92,31 @@ export const Auth = () => {
             )}
           </div>
         </div>
+        <h1
+          style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "2rem",
+            fontWeight: "bold",
 
-        {/* <input
-        placeholder="Email..."
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        style={{ margin: "5px", padding: "8px" }}
-      />
-      <input
-        placeholder="Password..."
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        style={{ margin: "5px", padding: "8px" }}
-      />
-      <button onClick={signIn} style={{ margin: "5px" }}>
-        Sign In
-      </button> */}
+            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
+            margin: "5px",
+            marginRight: "10px",
+          }}
+        >
+          [ ThoughtBank ]
+        </h1>
+        <div style={{ justifyContent: "right" }}>
+          <button onClick={signInWithGoogle} style={{ margin: "5px" }}>
+            {auth?.currentUser ? "Switch Account" : "Sign In with Google"}
+          </button>
+          <button onClick={logout} style={{ margin: "5px" }}>
+            Logout
+          </button>
 
-        <button onClick={signInWithGoogle} style={{ margin: "5px" }}>
-          Sign In with Google
-        </button>
-        <button onClick={logout} style={{ margin: "5px" }}>
-          Logout
-        </button>
-
-        {message && (
-          <p style={{ marginTop: "15px", fontWeight: "bold" }}>{message}</p>
-        )}
+          {message && (
+            <p style={{ marginTop: "15px", fontWeight: "bold" }}>{message}</p>
+          )}
+        </div>
       </div>
     </div>
   );

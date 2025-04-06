@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WYSIWYG Markdown Editor with Toast UI</title>
+
+    <!-- Toast UI Editor CSS -->
+    <link
+      rel="stylesheet"
+      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+    />
+
+    <!-- Toast UI Editor JS -->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+    <style>
+      html,
+      body {
+        height: 100%; /* Ensure the root elements have a defined height */
+        margin: 0; /* Remove default margin to avoid layout issues */
+
+        font-family: sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background-color: #f4f4f4;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      #editor {
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        background-color: white;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .output-container {
+        display: none;
+      }
+
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>WYSIWYG Markdown Editor</h1>
+
+    <div id="editor"></div>
+
+    <div class="output-container" style="display: none">
+      <pre id="markdown-output"></pre>
+    </div>
+
+    <script>
+      // Initialize the Toast UI Editor
+      const editor = new toastui.Editor({
+        el: document.querySelector("#editor"),
+        initialEditType: "wysiwyg", // Can be 'wysiwyg' or 'markdown'
+        previewStyle: "vertical",
+        initialValue: `# Hello Markdown!\n\nEdit this content and see the live Markdown output below.\n\n- Item 1\n- **Bold Item**\n- *Italic Item*\n\n\`<code>\` block\n\n[Link](https://example.com)`,
+      });
+
+      // Show raw Markdown content in output
+      const output = document.getElementById("markdown-output");
+      editor.on("change", () => {
+        output.textContent = editor.getMarkdown();
+      });
+
+      // Trigger initial update
+      output.textContent = editor.getMarkdown();
+
+      console.log(output.textContent);
+    </script>
+  </body>
+</html>
