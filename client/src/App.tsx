@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { Box, Slider } from "@chakra-ui/react";
+import { HStack, Progress } from "@chakra-ui/react";
+
 import { MdGraphicEq } from "react-icons/md";
 import { Auth } from "./components/auth";
 import { Todo } from "./components/todo";
@@ -25,8 +27,18 @@ function App() {
         ))}
       </div>
       <div>
-        <Todo />
+        {/* <Todo /> */}
         <CDNMarkdownEditor />
+
+        {/* <Progress.Root defaultValue={90}   maxW="sm">
+          <HStack gap="5">
+            <Progress.Label>Usage</Progress.Label>
+            <Progress.Track flex="1">
+              <Progress.Range />
+            </Progress.Track>
+            <Progress.ValueText>50%</Progress.ValueText>
+          </HStack>
+        </Progress.Root> */}
       </div>
     </>
   );
