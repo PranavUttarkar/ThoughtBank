@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;700&display=swap');
 
 :root {
-  --background-color: #0c021f;
+  /* --background-color: #0c021f; */
   --primary-color: #ffce38;
   --secondary-color: #f8c15b;
-  --text-color: #fff6f6;
+  /* --text-color: #fff6f6; */
   --button-bg: #ffcc00;
   --button-hover-bg: #ffee00;
   --button-text-color: #1b1b1b;
-  --border-radius: 8px;
+  /* --border-radius: 8px; */
   --shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -20,9 +20,7 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -46,12 +44,16 @@ button:hover {
 }
 
 .navbar {
+  color: white;
+  a {
+    color: white;
+  }
   background: rgba(50, 1, 70, 0.8); /* Semi-transparent background */
-  color: var(--button-text-color);
+  /* color: var(--button-text-color); */
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px 0px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   position: fixed;
   top: 0;
@@ -64,7 +66,10 @@ button:hover {
 
 .navbar .logo {
   font-size: 24px;
+  margin-left: 10px;
   font-weight: bold;
+  font-style: italic; /* Add a slight italic style for a modern look */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add subtle text shadow for depth */
   color: #fff; /* White color for logo */
   text-transform: uppercase; /* Uppercase text */
   letter-spacing: 2px; /* Spacing between letters */

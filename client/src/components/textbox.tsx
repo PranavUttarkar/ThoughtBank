@@ -144,28 +144,73 @@ export const CDNMarkdownEditor: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center px-4 py-6 space-y-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold text-center">General Notes</h1>
+    <div
+      style={{
+        paddingTop: "100px",
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: "20px",
+        paddingRight: "20px",
+      }}
+    >
+      <div className="flex flex-col items-center px-4 py-6 space-y-6 bg-gray-100 min-h-screen">
+        <h1 className="text-3xl font-bold text-center">General Notes</h1>
 
-      {/* Toast UI container */}
-      <div
-        ref={containerRef}
-        style={{ background: "white", borderRadius: "3rem" }}
-        className="w-full max-w-4xl bg-white p-4 rounded-xl shadow-md"
-      ></div>
+        {/* Toast UI container */}
+        <div
+          ref={containerRef}
+          style={{ background: "white", borderRadius: "3rem" }}
+          className="w-full max-w-4xl bg-white p-4 rounded-xl shadow-md"
+        ></div>
+        <div
+          className="resize-handle"
+          style={{
+            cursor: "ns-resize",
+            height: "20px",
+            background: "#ccc",
+            marginTop: "5px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "black",
+            fontSize: "12px",
+          }}
+          onMouseDown={(e) => {
+            const startY = e.clientY;
+            const startHeight = containerRef.current?.offsetHeight || 0;
 
-      {/* Save Button */}
-      <button
-        onClick={handleSave}
-        className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
-      >
-        Save
-      </button>
-      {saveTime && (
-        <p className="text-sm text-gray-500">
-          Last saved: {saveTime.toLocaleTimeString()}
-        </p>
-      )}
+            const onMouseMove = (moveEvent: MouseEvent) => {
+              if (containerRef.current) {
+                const newHeight = startHeight + (moveEvent.clientY - startY);
+                containerRef.current.style.height = `${newHeight}px`;
+              }
+            };
+
+            const onMouseUp = () => {
+              document.removeEventListener("mousemove", onMouseMove);
+              document.removeEventListener("mouseup", onMouseUp);
+            };
+
+            document.addEventListener("mousemove", onMouseMove);
+            document.addEventListener("mouseup", onMouseUp);
+          }}
+        >
+          ⇅ Drag me to resize ⇅
+        </div>
+
+        {/* Save Button */}
+        <button
+          onClick={handleSave}
+          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Save
+        </button>
+        {saveTime && (
+          <p className="text-sm text-gray-500">
+            Last saved: {saveTime.toLocaleTimeString()}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

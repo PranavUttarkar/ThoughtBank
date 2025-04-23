@@ -97,7 +97,7 @@ export const Auth = () => {
             fontFamily: "'Poppins', sans-serif",
             fontSize: "2rem",
             fontWeight: "bold",
-
+            color: "white",
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
             margin: "5px",
             marginRight: "10px",
