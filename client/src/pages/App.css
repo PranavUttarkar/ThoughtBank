@@ -16,9 +16,10 @@ body {
   background: var(--background-color);
   color: var(--text-color);
   font-family: "Signika Negative", sans-serif;
+  font-size: large;
   margin: 0;
   padding: 0;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: center;
 }
@@ -48,7 +49,7 @@ button:hover {
   a {
     color: white;
   }
-  background: rgba(50, 1, 70, 0.8); /* Semi-transparent background */
+  background: rgba(50, 1, 70, 1.0); /* Semi-transparent background */
   /* color: var(--button-text-color); */
   width: 100%;
   padding: 10px 0px;

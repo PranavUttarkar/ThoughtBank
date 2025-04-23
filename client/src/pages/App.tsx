@@ -9,6 +9,7 @@ import { Todo } from "../components/todo";
 import { CDNMarkdownEditor } from "../components/textbox";
 import { Test } from "./test";
 import { Book } from "./book";
+import DailyCheckIn from "@/components/DailyCheckIn";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -24,11 +25,15 @@ function App() {
         <li>
           <Link to="/test">Test Page </Link>
         </li>
+        <li>
+          <Link to="/DailyCheckIn">Daily Check In </Link>
+        </li>
       </div>
       <Routes>
         <Route path="/" element={<CDNMarkdownEditor />}></Route>
         <Route path="/test" element={<Test />}></Route>
         <Route path="/test/: id" element={<Book />}></Route>
+        <Route path="/DailyCheckIn" element={<DailyCheckIn />}></Route>
       </Routes>
 
       {/* <CDNMarkdownEditor /> */}
