@@ -12,6 +12,7 @@ import {
   where,
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import DynamicTabs from "./DynamicTabs";
 
 interface GeneralNotesPage {
   content: string;
@@ -165,24 +166,38 @@ export const CDNMarkdownEditor: React.FC = () => {
         <div
           className="resize-handle"
           style={{
-            cursor: "ns-resize",
+            cursor: "nwse-resize",
+            width: "20px",
             height: "20px",
             background: "#ccc",
-            marginTop: "5px",
+            position: "absolute",
+            bottom: "10px",
+            right: "10px",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             color: "black",
             fontSize: "12px",
+            borderRadius: "50%",
+            transform: "translate(50%, 50%)",
           }}
           onMouseDown={(e) => {
+            const startX = e.clientX;
             const startY = e.clientY;
+            const startWidth = containerRef.current?.offsetWidth || 0;
             const startHeight = containerRef.current?.offsetHeight || 0;
 
             const onMouseMove = (moveEvent: MouseEvent) => {
               if (containerRef.current) {
+                const newWidth = startWidth + (moveEvent.clientX - startX);
                 const newHeight = startHeight + (moveEvent.clientY - startY);
+                containerRef.current.style.width = `${newWidth}px`;
                 containerRef.current.style.height = `${newHeight}px`;
+
+                // Update the position of the resize handle
+                const resizeHandle = moveEvent.target as HTMLElement;
+                resizeHandle.style.bottom = "10px";
+                resizeHandle.style.right = "10px";
               }
             };
 
@@ -195,7 +210,7 @@ export const CDNMarkdownEditor: React.FC = () => {
             document.addEventListener("mouseup", onMouseUp);
           }}
         >
-          ⇅ Drag me to resize ⇅
+          ⇲
         </div>
 
         {/* Save Button */}
@@ -211,6 +226,7 @@ export const CDNMarkdownEditor: React.FC = () => {
           </p>
         )}
       </div>
+      <br></br>
     </div>
   );
 };

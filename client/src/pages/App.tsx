@@ -10,6 +10,8 @@ import { CDNMarkdownEditor } from "../components/textbox";
 import { Test } from "./test";
 import { Book } from "./book";
 import DailyCheckIn from "@/components/DailyCheckIn";
+import DynamicTabs from "@/components/DynamicTabs";
+import { MdBed } from "react-icons/md";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -35,7 +37,7 @@ function App() {
         <Route path="/test/: id" element={<Book />}></Route>
         <Route path="/DailyCheckIn" element={<DailyCheckIn />}></Route>
       </Routes>
-
+      {/* <DynamicTabs /> */}
       {/* <CDNMarkdownEditor /> */}
     </>
   );
