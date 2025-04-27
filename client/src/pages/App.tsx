@@ -31,8 +31,12 @@ function App() {
           <Link to="/DailyCheckIn">Daily Check In </Link>
         </li>
       </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Routes>
-        <Route path="/" element={<CDNMarkdownEditor />}></Route>
+        <Route path="/" element={<DynamicTabs />}></Route>
         <Route path="/test" element={<Test />}></Route>
         <Route path="/test/: id" element={<Book />}></Route>
         <Route path="/DailyCheckIn" element={<DailyCheckIn />}></Route>

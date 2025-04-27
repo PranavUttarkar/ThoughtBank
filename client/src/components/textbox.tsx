@@ -60,6 +60,16 @@ export const CDNMarkdownEditor: React.FC = () => {
     }
   };
 
+  // Auto-save content every 2 minutes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleSave();
+      console.log("hello");
+    }, 120000); // Executes handleSave every 2 minutes
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+
   // Fetch note from Firestore for the logged-in user
   const fetchAndLoadUserNote = async (userId: string) => {
     try {

@@ -13,10 +13,10 @@ interface Item {
 }
 
 const items: Item[] = [
-  { id: "1", title: "Tab", content: "Tab Content" },
-  { id: "2", title: "Tab", content: "Tab Content" },
-  { id: "3", title: "Tab", content: "Tab Content" },
-  { id: "4", title: "Tab", content: "Tab Content" },
+  { id: "1", title: "Tab 1", content: "Tab Content" },
+  { id: "2", title: "Tab 2", content: "Tab Content" },
+  { id: "3", title: "Tab 3", content: "Tab Content" },
+  { id: "4", title: "Tab 4", content: "Tab Content" },
 ];
 
 const uuid = () => {
@@ -53,14 +53,26 @@ const DynamicTabs = () => {
   return (
     <Tabs.Root
       value={selectedTab}
-      variant="outline"
+      variant="enclosed"
       size="sm"
       onValueChange={(e) => setSelectedTab(e.value)}
     >
       <Tabs.List flex="1 1 auto">
         {tabs.map((item) => (
           <Tabs.Trigger value={item.id} key={item.id}>
-            {item.title}{" "}
+            <Editable.Root
+              value={item.title}
+              onValueChange={(e) => {
+                setTabs((prevTabs) =>
+                  prevTabs.map((tab) =>
+                    tab.id === item.id ? { ...tab, title: e.value } : tab
+                  )
+                );
+              }}
+              placeholder="Edit title"
+            >
+              {item.title}
+            </Editable.Root>
             <CloseButton
               as="span"
               role="button"

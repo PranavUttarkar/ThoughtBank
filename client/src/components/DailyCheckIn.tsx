@@ -140,6 +140,112 @@ const DailyCheckIn = () => {
           </Slider.Control>
         </Slider.Root>
       </Box>
+
+      <Box
+        width="90%"
+        maxWidth="500px"
+        padding="6"
+        borderWidth="1px"
+        borderRadius="lg"
+        boxShadow="lg"
+        bg="white"
+        textAlign="center"
+        marginTop="20px"
+      >
+        <h2
+          style={{
+            marginBottom: "16px",
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+          }}
+        >
+          Add Custom Category
+        </h2>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target as HTMLFormElement);
+            const categoryName = formData.get("categoryName") as string;
+            const inputType = formData.get("inputType") as string;
+            const rangeMax = formData.get("rangeMax") as string;
+
+            console.log({
+              categoryName,
+              inputType,
+              rangeMax: inputType === "slider" ? Number(rangeMax) : undefined,
+            });
+
+            // Add logic to handle the new category
+          }}
+        >
+          <Box marginBottom="16px">
+            <label htmlFor="categoryName">Category Name:</label>
+            <input
+              id="categoryName"
+              name="categoryName"
+              type="text"
+              required
+              style={{
+                width: "100%",
+                padding: "8px",
+                marginTop: "8px",
+                border: "1px solid #ccc",
+                borderRadius: "4px",
+              }}
+            />
+          </Box>
+          <Box marginBottom="16px">
+            <label htmlFor="inputType">Input Type:</label>
+            <select
+              id="inputType"
+              name="inputType"
+              required
+              style={{
+                width: "100%",
+                padding: "8px",
+                marginTop: "8px",
+                border: "1px solid #ccc",
+                borderRadius: "4px",
+              }}
+            >
+              <option value="slider">Slider</option>
+              <option value="switch">Switch</option>
+            </select>
+          </Box>
+          <Box marginBottom="16px" id="rangeMaxContainer">
+            <label htmlFor="rangeMax">Slider Max Range (if applicable):</label>
+            <input
+              id="rangeMax"
+              name="rangeMax"
+              type="number"
+              min="1"
+              step="1"
+              style={{
+                width: "100%",
+                padding: "8px",
+                marginTop: "8px",
+                border: "1px solid #ccc",
+                borderRadius: "4px",
+              }}
+            />
+          </Box>
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              padding: "10px",
+              backgroundColor: "#4ced87",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            Add Category
+          </button>
+        </form>
+      </Box>
     </>
   );
 };
