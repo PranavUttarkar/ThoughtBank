@@ -14,9 +14,6 @@ import DynamicTabs from "@/components/DynamicTabs";
 import { MdBed } from "react-icons/md";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [array, setArray] = useState([]);
-
   return (
     <>
       <div className="navbar">
@@ -31,18 +28,14 @@ function App() {
           <Link to="/DailyCheckIn">Daily Check In </Link>
         </li>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <div style={{ marginTop: "100px" }}> {/* NAVBAR BREAK FROM TOP: */}</div>
+
       <Routes>
-        <Route path="/" element={<DynamicTabs />}></Route>
+        {/* <Route path="/" element={<DynamicTabs />}></Route> */}
         <Route path="/test" element={<Test />}></Route>
         <Route path="/test/: id" element={<Book />}></Route>
         <Route path="/DailyCheckIn" element={<DailyCheckIn />}></Route>
       </Routes>
-      {/* <DynamicTabs /> */}
-      {/* <CDNMarkdownEditor /> */}
     </>
   );
 }
