@@ -13,6 +13,7 @@ import DynamicTabs from "@/components/DynamicTabs";
 import { MdBed } from "react-icons/md";
 import InputTodo from "@/components/todoComponents/inputTodoPrimitive";
 import ListTodoPrimitive from "@/components/todoComponents/listTodoPrimitive";
+import CreateTags from "@/components/todoComponents/CreateTags";
 function App() {
   return (
     <Fragment>
@@ -39,6 +40,8 @@ function App() {
       <div className="container">
         {/* <InputTodo /> */}
         <ListTodoPrimitive />
+        <br></br>
+        <CreateTags />
       </div>
     </Fragment>
   );

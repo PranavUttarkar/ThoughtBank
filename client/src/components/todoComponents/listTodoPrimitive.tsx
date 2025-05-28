@@ -1,6 +1,7 @@
 import { Button, Table } from "@chakra-ui/react";
 import React, { useEffect, useState, Fragment } from "react";
 
+// todos is a list on the front end that mirrors the data base
 const listTodoPrimitive = () => {
   const [todos, setTodos] = useState<
     { description: string; completed: boolean; todo_id: bigint }[]
@@ -25,16 +26,6 @@ const listTodoPrimitive = () => {
     getTodos();
   }, []);
 
-  //   const updateTodoDescription = async () => {
-  //     try {
-
-  //         const response = await fetch("http://localhost:5000/todos", metho);
-
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
   const deleteTodo = async (todo_id: bigint) => {
     try {
       const response = await fetch(`http://localhost:5000/todos/${todo_id}`, {
@@ -54,7 +45,6 @@ const listTodoPrimitive = () => {
     const index = todos.findIndex((todo) => todo.todo_id === todo_id);
 
     try {
-      console.log(todos[index]);
       todos[index].completed = !todos[index].completed;
       const response = await fetch(`http://localhost:5000/todos/${todo_id}`, {
         method: "PUT",
@@ -78,7 +68,7 @@ const listTodoPrimitive = () => {
   const [description, setDescription] = useState("Enter Todo Task");
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission behavior
 
     try {
       const body = { description };
@@ -88,7 +78,6 @@ const listTodoPrimitive = () => {
         body: JSON.stringify(body),
       });
       getTodos();
-      console.log(response);
     } catch (err) {
       console.error({ err });
     }
@@ -100,14 +89,16 @@ const listTodoPrimitive = () => {
       <br></br>
       <h1>List Todos</h1>
       <Table.Root size="sm">
-        {/* <Table.Header>
+        <Table.Header>
           <Table.Row>
             <Table.ColumnHeader>Description</Table.ColumnHeader>
-            <Table.ColumnHeader>Completed</Table.ColumnHeader>
             <Table.ColumnHeader>Edit</Table.ColumnHeader>
-            <Table.ColumnHeader textAlign="end">Delete</Table.ColumnHeader>
+            <Table.ColumnHeader>Completed?</Table.ColumnHeader>
+            <Table.ColumnHeader textAlign="right">
+              <span style={{ marginRight: "12px" }}>Delete</span>
+            </Table.ColumnHeader>
           </Table.Row>
-        </Table.Header> */}
+        </Table.Header>
         <Table.Body>
           {todos.map((item) => (
             <Table.Row key={item.todo_id}>
@@ -134,7 +125,7 @@ const listTodoPrimitive = () => {
                 </Button>
               </Table.Cell>
 
-              <Table.Cell textAlign="right">
+              <Table.Cell textAlign="end">
                 {" "}
                 <Button
                   style={{

@@ -44,7 +44,22 @@ export const Auth = () => {
 
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      // Send user data to your backend
+      await fetch("http://localhost:5000/save-user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          uid: user.uid,
+          email: user.email,
+          name: user.displayName,
+          photoURL: user.photoURL,
+        }),
+      });
+
+      setMessage("✅ User signed in and saved!");
     } catch (err) {
       setMessage("❌ " + err);
     }
@@ -106,10 +121,18 @@ export const Auth = () => {
           [ ThoughtBank ]
         </h1>
         <div style={{ justifyContent: "right" }}>
-          <button onClick={signInWithGoogle} style={{ margin: "5px" }}>
+          <button
+            className="NavbarButton"
+            onClick={signInWithGoogle}
+            style={{ margin: "5px" }}
+          >
             {auth?.currentUser ? "Switch Account" : "Sign In with Google"}
           </button>
-          <button onClick={logout} style={{ margin: "5px" }}>
+          <button
+            className="NavbarButton"
+            onClick={logout}
+            style={{ margin: "5px" }}
+          >
             Logout
           </button>
 

@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-color);
 }
 
-button {
+.NavbarButton {
   background: var(--button-bg);
   color: var(--button-text-color);
   border: none;
@@ -40,7 +40,7 @@ button {
   box-shadow: var(--shadow);
 }
 
-button:hover {
+.NavbarButton:hover {
   background: var(--button-hover-bg);
 }
 

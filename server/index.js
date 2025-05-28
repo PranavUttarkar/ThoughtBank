@@ -83,6 +83,29 @@ app.delete("/todos/:id", async (req, res) => {
   }
 });
 
+// Save Firebase user to Postgres
+app.post("/save-user", async (req, res) => {
+  try {
+    const { uid, email, name, photoURL } = req.body;
+
+    if (!uid || !email || !name || !photoURL) {
+      return res.status(400).send("Missing required fields");
+    }
+
+    await pool.query(
+      `INSERT INTO userInfo (uid, email, username, photo_url)
+       VALUES ($1, $2, $3, $4)
+       ON CONFLICT (uid) DO NOTHING`,
+      [uid, email, name, photoURL]
+    );
+
+    res.status(200).send("User saved");
+  } catch (err) {
+    console.error("Error saving user:", err.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 app.listen(5000, () => {
   console.log("server has started on port 5000");
 });
